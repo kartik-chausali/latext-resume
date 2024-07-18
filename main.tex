@@ -1,0 +1,351 @@
+\documentclass[9pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, 
+    top=1 cm, 
+    bottom=1 cm, 
+    left=1 cm, 
+    right=1 cm, 
+    footskip=0.5 cm, 
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={John Doe's CV},
+    pdfauthor={John Doe},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{2\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{0.5pt}\titlerule]
+
+\titlespacing{\section}{
+    -1pt
+}{
+    0.2 cm
+}{
+    0.1 cm
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.05 cm,
+        parsep=0.05 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.05 cm,
+        parsep=0.05 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.2}
+}{
+    \par\kern\topsep
+}
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \tiny\color{gray}\textit{Last updated in July 2024}\hspace{\widthof{Last updated in July 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{20 pt}{20 pt}\selectfont Kartik Chausali
+
+        \vspace{3 pt}
+
+        \small
+       
+     
+        \kern 5.0 pt%
+        \begin{tabular}{c}
+        \href{mailto:kartik12345@gmail.com}{kartikchausali12345@gmail.com} \quad \textbar{} \quad
+        \href{tel:+91-99}{+91-9897981016} \quad \textbar{} \quad
+        \href{https://www.linkedin.com/in/kartik-chausali-025965201/}{\textcolor{blue}{LinkedIn}} \quad \textbar{} \quad
+        \href{https://github.com/kartik-chausali}{\textcolor{blue}{GitHub}}
+    \end{tabular}
+    \end{header}
+
+    \vspace{2 pt - 0.3 cm}
+
+
+    \section{\textbf{Skills}}
+
+        
+        \begin{tabular}{c}
+         \bfseries Java \textbar{} 
+         \bfseries Javascript \textbar{}
+         \bfseries Typescript \textbar{}
+         \bfseries Nextjs \textbar{}
+         \bfseries Reactjs \textbar{}
+         \bfseries SQL \textbar{}
+         \bfseries Prisma(ORM) \textbar{}
+         \bfseries Mongodb \textbar{}
+         \bfseries Express \textbar{}
+         \bfseries Honojs \textbar{}
+         \bfseries Git \textbar{}
+        \end{tabular}
+        \baselineskip=1.2\baselineskip
+        \begin{tabular}{c}
+            \bfseries GitHub \textbar{}
+            \bfseries Tailwind \textbar{}
+            \bfseries Docker \textbar{}
+            \bfseries TurboRepo \textbar{}
+            \bfseries LinuxOS \textbar{
+            \bfseries AWS
+            }
+        \end{tabular}
+
+
+    
+    \vspace{0.1cm}
+
+    \section{\textbf{Education}}
+
+        
+        \begin{twocolentry}{
+            2020 – 2024
+        }
+            \textbf{Graphic Era Hill University, India}. B.Tech in Computer Science and Engineering\end{twocolentry}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item GPA: 8.28/10
+            \end{highlights}
+        \end{onecolentry}
+
+        \begin{twocolentry}{2018-2019}
+            \textbf{Mnemonic Convent School}
+        \vspace{0.05cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item CSBE(Class XII), Aggregate:71\%
+            \end{highlights}
+        \end{onecolentry}
+        \end{twocolentry}
+        
+
+            \vspace{0.05 cm}
+
+            \begin{twocolentry}{2016-2017}
+                 \textbf{Doon Modern Academy}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item CBSE(Class X), CGPA:8.6/10
+            \end{highlights}
+        \end{onecolentry}
+            \end{twocolentry}
+       
+    
+    
+    \section{\textbf{Projects}}
+
+        
+        \begin{twocolentry}{
+            \href{https://code-arena-roan.vercel.app/}{\textcolor{blue}{Live Link}}
+        }
+            \textbf{Code-Arena}\end{twocolentry}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed a platform for users to practice algorithmic coding challenges in multiple programming languages
+                \item Implemented necessary features like multi-language code execution, submission history tracking, standings.
+                \item Built using Next.js for frontend and backend development, PostgreSQL database and Prisma ORM for data management, utilized Tailwind CSS for rapid UI development and styling.
+                \item Built a robust microservice architecture with an Express.js webhook server for efficient code submission handling.
+                \item Employed Turborepo for optimized project structure and build performance. Containerized the application using Docker.
+                \item \href{https://github.com/kartik-chausali/code-arena-turbo}{\textcolor{blue}{Github Repo}}
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.1 cm}
+
+        \begin{twocolentry}{
+            \href{https://medium-blog-drab.vercel.app/}{\textcolor{blue}{Live Link}}
+        }
+            \textbf{Medium-Blog}\end{twocolentry}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed a full-stack blogging platform where users can post their blogs, update them and see blogs posted by other users.
+                \item All essential features like signup/login, blog creation, editing, publishing and interactive UI were taken in account.
+                \item Tools Used: React.js for frontend, Hono.js for backend, Postgres and Prisma as ORM for data management, Tailwind for styling.
+                \item \href{https://github.com/kartik-chausali/medium-blog}{\textcolor{blue}{Github Repo}}
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.1 cm}
+
+        \begin{twocolentry}{
+            \href{https://github.com/kartik-chausali/LiveCodeShare}{\textcolor{blue}{Github Repo}}
+        }
+            \textbf{LiveCodeShare}\end{twocolentry}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed an interview assistance tool enabling real-time code collaboration between interviewers and candidates.
+                \item Implemented a shared code editor using Socket.io for web sockets for instant live data transmission.
+                \item Modeled the live share feature allowing both parties to simultaneously write and view code.
+                \item Tools Used: React.js for frontend, Express for backend, Socket.io for web sockets and Tailwind for styling.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.1 cm}
+
+        \begin{twocolentry}{
+            \href{https://github.com/kartik-chausali/typingGame}{\textcolor{blue}{Github Repo}}
+        }
+            \textbf{Typing Game}\end{twocolentry}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed a web application allowing users to test their typing speed in words per minute (WPM).
+                \item Implemented the core functionality for real-time typing speed calculation with JavaScript.
+                \item Tools Used: HTML, CSS and Javascript.
+            \end{highlights}
+        \end{onecolentry}
+
+    \vspace{0.2cm}
+    \section{\textbf{Academic and Extracurricular Achievements}}
+
+        \begin{onecolentry}
+            \textbf{Solved over 600+ coding problems} across various platforms like Leetcode, GeeksForGeeks, CodeChef.
+        \end{onecolentry}
+
+        \vspace{0.05 cm}
+
+        \begin{onecolentry}
+            \textbf{February Cook-off CodeChef} Global Rank 1900 out of over 10000+ participants (February 2022)
+        \end{onecolentry}
+
+        \vspace{0.05cm}
+        \begin{onecolentry}
+            \textbf{February Long CodeChef} Global Rank 1700 out of over 11000+ participants. (February 2022)
+        \end{onecolentry}
+
+        \vspace{0.2cm}
+        \section{\textbf{Courses}}
+        \begin{twocolentry}{Dec 2023}
+            \begin{onecolentry}
+                \textbf{Full Stack Web Development Course (100xDevs)}
+            \end{onecolentry}
+        \end{twocolentry}
+        \begin{twocolentry}{May 2021}
+            \begin{onecolentry}
+                \textbf{Basics of Android (Udacity)}
+            \end{onecolentry}
+        \end{twocolentry}
+            
+        
+
+\end{document}
